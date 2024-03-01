@@ -2,11 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 from Utils.readFiles.FilesReader import FilesReader
-import psycopg2
 import spacy
 from spacy import displacy
-import re
-
+from server.Utils.util import get_text
+from server.orph.Checker import Checker
 
 nlp = spacy.load('C:\\Users\\evgen\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\site-packages\\spacy\\data\\ru_core_news_md\\ru_core_news_md-3.7.0')
 app = Flask(__name__)
@@ -95,3 +94,19 @@ def dependency(id):
         svg_list.append(svg)
     svg_list.pop()
     return jsonify(svg=svg_list)
+
+
+@app.route('/texts/<int:id>/words')
+@cross_origin()
+def get_words_to_the_text(id):
+    global texts
+    text = get_text(texts[int(id)])
+    checker = Checker()
+    words = text.split(" ")
+    all_words = checker.count_words(words)
+    all_words = sorted(all_words, key=lambda word: word.normal_form)
+    json = []
+    for word in all_words:
+        json.append({'id': word.id, 'normal_form': word.normal_form, 'number': word.number})
+    return jsonify(json)
+
