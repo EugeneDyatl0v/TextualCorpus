@@ -6,9 +6,64 @@ import docx2txt
 import PyPDF2
 from striprtf.striprtf import rtf_to_text
 from ..dto.Proxy import Text
+import xml.etree.ElementTree as ET
+import xml.dom.minidom
+import spacy
 
 
 class FilesReader:
+    @staticmethod
+    def generate_xml(text, output_file):
+        # Загружаем модуль Spacy
+        nlp = spacy.load(
+            'C:\\Users\\evgen\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\site-packages\\spacy\\data\\ru_core_news_md\\ru_core_news_md-3.7.0')
+
+        # Создаем корневой элемент
+        root = ET.Element('t')
+
+        # Обрабатываем текст с помощью Spacy
+        doc = nlp(text)
+
+        # Проходим по предложениям и создаем элементы "s"
+        for sentence in doc.sents:
+            sentence_element = ET.SubElement(root, 's')
+
+            # Проходим по словам и пунктуации в предложении
+            for token in sentence:
+                if token.is_alpha or token.is_punct:
+                    # Определяем, является ли элемент словом или пунктуацией
+                    if token.is_alpha:
+                        element_tag = 'w'
+                    else:
+                        element_tag = 'p'
+
+                    # Создаем соответствующий элемент и задаем значение
+                    element = ET.SubElement(sentence_element, element_tag)
+                    element.text = token.text
+
+                    # Создаем элемент "ana" для морфологических свойств слова
+                    ana = ET.SubElement(element, 'ana')
+
+                    # Создаем элементы "tag" и "lemma" и задаем значения
+                    tag = ET.SubElement(ana, 'tag')
+                    tag.text = token.tag_
+
+                    lemma = ET.SubElement(ana, 'lemma')
+                    lemma.text = token.lemma_
+
+                    for key, value in token.morph.to_dict().items():
+                        lemma = ET.SubElement(ana, key)
+                        lemma.text = value
+
+                    # Создаем XML-дерево
+        tree = ET.ElementTree(root)
+
+        # Сохраняем XML-дерево в файл
+        tree.write(output_file, encoding='utf-8', xml_declaration=True)
+        dom = xml.dom.minidom.parseString(ET.tostring(root, encoding='utf-8').decode('utf-8'))
+        print(dom.toprettyxml(indent='\t'))
+        return dom.toprettyxml(indent='\t')
+
     @staticmethod
     def read_files(folder_path: str) -> list[Text]:
         text_list = []
