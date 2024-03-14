@@ -131,3 +131,34 @@ def get_word(text_id, word_id):
             print(1)
 
     return jsonify(json)
+
+
+@app.route('/search', methods=['GET'])
+@cross_origin()
+def search():
+    #r = request.get_json()
+    #print(r)
+    json = search_all_words({'value': '', 'chars': []})
+    return jsonify(json)
+
+
+def check(word, query):
+    if query['value'] in word.normal_form:
+        forms = []
+        for form in word.forms:
+            forms.append(FormMapper.convert(form))
+        for form in forms:
+            if all(value in form.values() for value in query['chars']):
+                return True
+    return False
+
+
+def search_all_words(query):
+    global texts, words
+    json = []
+    for text in texts:
+        get_words_to_the_text(text.id)
+        for word in words:
+            if check(word, query):
+                json.append({'id': word.id, 'normal_form': word.normal_form, 'number': word.number, 'text_id': text.id})
+    return json

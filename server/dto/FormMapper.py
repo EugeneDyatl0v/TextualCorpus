@@ -31,3 +31,24 @@ class FormMapper:
 
         print(res)
         return res
+
+    @staticmethod
+    def convert_form(characteristic):
+        if characteristic in Constants.part_of_speech_map:
+            return Constants.part_of_speech_map[characteristic]
+        if characteristic in Constants.number:
+            return Constants.number[characteristic]
+        if characteristic in Constants.case:
+            return Constants.case[characteristic]
+        if characteristic in Constants.gender:
+            return Constants.gender[characteristic]
+        if characteristic in Constants.animation:
+            return Constants.animation[characteristic]
+        if characteristic in Constants.degree:
+            return Constants.degree[characteristic]
+        if characteristic in Constants.mest:
+            return Constants.mest[characteristic]
+        if characteristic in Constants.time:
+            return Constants.time[characteristic]
+        if characteristic in Constants.inclination:
+            return Constants.inclination[characteristic]

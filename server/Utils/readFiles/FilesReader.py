@@ -61,7 +61,7 @@ class FilesReader:
         # Сохраняем XML-дерево в файл
         tree.write(output_file, encoding='utf-8', xml_declaration=True)
         dom = xml.dom.minidom.parseString(ET.tostring(root, encoding='utf-8').decode('utf-8'))
-        print(dom.toprettyxml(indent='\t'))
+
         return dom.toprettyxml(indent='\t')
 
     @staticmethod
