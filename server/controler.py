@@ -36,7 +36,6 @@ def upload_files():
             file.save('texts\\' + filename)
 
         texts = FilesReader.read_files('texts')
-        print(texts)
         for id, text in enumerate(texts):
             xml_texts.append(FilesReader.generate_xml(text.content, 'xml\\' + str(id) + '.xml'))
             buffer = []
@@ -141,9 +140,7 @@ def search():
     my_json['value'] = r
     r = request.args.get('chars')
     my_json['chars'] = list(filter(None, r.split(',')))
-    print(my_json)
     json = search_all_words(my_json)
-    print(json)
     return jsonify(json)
 
 
@@ -153,7 +150,6 @@ def check(word, query):
         if query['chars'] is None:
             return True
         forms = []
-        print(query['chars'])
         for form in word.forms:
             forms.append(FormMapper.convert(form))
         for form in forms:
