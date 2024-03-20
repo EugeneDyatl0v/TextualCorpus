@@ -1,0 +1,11 @@
+<main>
+  <body>
+    <article  *ngFor="let text of texts">
+      <article class="tile" [routerLink]="[text.id]">
+        <p><span>Title:</span> {{text.title}}</p>
+        <p><span>Category:</span> {{text.category}}</p>
+        <p><span>Author:</span> {{text.author}}</p>
+      </article>
+    </article>
+  </body>
+</main>

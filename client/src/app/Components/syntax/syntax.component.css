@@ -1,0 +1,23 @@
+body{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  margin-top: 10px ;
+}
+
+.tile{
+  border: 2px solid #25B99A;
+  border-radius: 12px;
+  margin: 3px;
+}
+
+.tile p{
+  margin: 3px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.tile p span{
+  color: #25B99A;
+}

@@ -1,0 +1,15 @@
+
+body div{
+  border: 2px solid #25B99A;
+  border-radius: 12px;
+}
+
+body p{
+  margin: 10px;
+  font-size: 20px;
+}
+
+body p span{
+  color: #25B99A;
+  font-weight: bold;
+}

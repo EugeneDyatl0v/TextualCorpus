@@ -1,0 +1,14 @@
+<main>
+    <header class="brand-name">
+      <img class="brand-logo" src="../assets/icons/open-book-book-svgrepo-com.svg" alt="logo" aria-hidden="true">
+      <p>Textual Corpus</p>
+      <button class="view_texts_btn" [routerLink]="['texts']">View texts</button>
+      <button class="view_texts_btn" [routerLink]="['syntax']">Texts syntax</button>
+    </header>
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+    <footer>
+
+    </footer>
+  </main>

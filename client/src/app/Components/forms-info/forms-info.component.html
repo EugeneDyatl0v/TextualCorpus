@@ -1,0 +1,17 @@
+<main>
+  <body>
+  <p><span>Word:</span> {{this.word?.normal_form}}</p>
+  <p><span>Number:</span> {{this.word?.number}}</p>
+    <div style="margin: 20px" *ngFor="let form of this.word?.forms">
+      <p *ngIf="form.word"><span>Form:</span> {{form.word}}</p>
+      <p *ngIf="form.animation">Animation: {{form.animation}}</p>
+      <p *ngIf="form.case">Case: {{form.case}}</p>
+      <p *ngIf="form.gender">Gender: {{form.gender}}</p>
+      <p *ngIf="form.inclination">Inclination: {{form.inclination}}</p>
+      <p *ngIf="form.number">Number: {{form.number}}</p>
+      <p *ngIf="form.part_of_speech">Part of speech: {{form.part_of_speech}}</p>
+      <p *ngIf="form.time">Time: {{form.time}}</p>
+      <p *ngIf="form.type">Type: {{form.type}}</p>
+    </div>
+  </body>
+</main>

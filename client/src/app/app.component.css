@@ -1,0 +1,57 @@
+.brand-logo{
+  width: 7vh;
+  height: 7vh;
+}
+
+.view_texts_btn {
+  transition-duration: 0.5s;
+  background-color: white;
+  color: #25B99A;
+  border: 2px solid #25B99A;
+  height: 5vh;
+  font-size: 3vh;
+  border-radius: 12px;
+}
+
+.view_texts_btn:hover {
+  background-color: #25B99A;
+  color: white;
+}
+
+body {
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+header{
+  position: sticky;
+  z-index: 3;
+  background-color: white;
+  top: 0;
+}
+
+header p{
+  padding-top: 2vh;
+  font-size: 5vh;
+  color: #25B99A;
+
+}
+
+
+
+.brand-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 7vh;
+  width: 100%;
+  border-bottom: 2px solid #25B99A;
+
+}
+
+footer{
+  height: 20px;
+  background-color: #25B99A;
+  position: fixed;
+  bottom: 0;
+}

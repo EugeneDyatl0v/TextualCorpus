@@ -1,0 +1,50 @@
+textarea{
+  height: 65vh;
+  width: 175vh;
+  font-size: 3vh;
+  resize: none;
+}
+
+body{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+footer{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.preamble{
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+  margin-left: 10vh ;
+}
+
+.preamble p{
+  font-size: 4vh;
+}
+
+.preamble p span{
+  color: #25B99A;
+}
+
+.view_texts_btn {
+  position: absolute;
+  right: 80px;
+  top: 100px;
+  transition-duration: 0.5s;
+  background-color: white;
+  color: #25B99A;
+  border: 2px solid #25B99A;
+  height: 5vh;
+  font-size: 3vh;
+  border-radius: 12px;
+}
+
+.view_texts_btn:hover {
+  background-color: #25B99A;
+  color: white;
+}

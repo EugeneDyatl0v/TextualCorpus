@@ -1,0 +1,32 @@
+<mat-form-field appearance="outline">
+  <input matTooltip="Use this field to search smth"
+         type="text" matInput placeholder="Search" [(ngModel)]="inputValue" (input)="search()" [matAutocomplete]="id1">
+  <mat-icon matSuffix>search</mat-icon>
+  <mat-autocomplete #id1>
+    <mat-option *ngFor="let option of autocompleteOptions" [value]="option" [routerLink]="'/texts/'+option.text_id+'/words/' + option.id">{{ option.normal_form }}</mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+
+<section class="example-section" [formGroup]="checkboxForm">
+  <h4>Часть речи:</h4>
+  <mat-checkbox *ngFor="let value of part_of_speech_values" (change)="change(value)">{{ value }}</mat-checkbox>
+  <h4>Одушевленность:</h4>
+  <mat-checkbox  *ngFor="let value of animation_values" (change)="change(value)">{{ value }}</mat-checkbox>
+  <h4>Род:</h4>
+  <mat-checkbox *ngFor="let value of gender_values" (change)="change(value)">{{ value }}</mat-checkbox>
+  <h4>Число:</h4>
+  <mat-checkbox *ngFor="let value of number_values" (change)="change(value)">{{ value }}</mat-checkbox>
+  <h4>Падеж:</h4>
+  <mat-checkbox *ngFor="let value of case_values" (change)="change(value)">{{ value }}</mat-checkbox>
+  <h4>Степень:</h4>
+  <mat-checkbox *ngFor="let value of degree_values" (change)="change(value)">{{ value }}</mat-checkbox>
+  <h4>Время:</h4>
+  <mat-checkbox *ngFor="let value of time_values" (change)="change(value)">{{ value }}</mat-checkbox>
+  <h4>Тип:</h4>
+  <mat-checkbox *ngFor="let value of type_values" (change)="change(value)">{{ value }}</mat-checkbox>
+  <h4>Наклонение:</h4>
+  <mat-checkbox *ngFor="let value of inclination_values" (change)="change(value)">{{ value }}</mat-checkbox>
+  <h4>Тип прилагательного:</h4>
+  <mat-checkbox *ngFor="let value of mest_values" (change)="change(value)">{{ value }}</mat-checkbox>
+</section>

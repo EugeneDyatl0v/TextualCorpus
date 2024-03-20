@@ -1,0 +1,71 @@
+.upload_btn {
+  transition-duration: 0.5s;
+  background-color: white;
+  color: #25B99A;
+  border: 2px solid #25B99A;
+  height: 5vh;
+  font-size: 3vh;
+  border-radius: 12px;
+  margin-right: 10px;
+}
+
+.table-header{
+  color: white;
+  background-color: #25B99A;
+  height: 3vh;
+}
+
+.upload_btn:hover {
+  background-color: #25B99A;
+  color: white;
+}
+
+.submit_btn {
+  transition-duration: 0.5s;
+  background-color: white;
+  color: dimgray;
+  border: 2px solid dimgray;
+  height: 5vh;
+  font-size: 3vh;
+  border-radius: 12px;
+}
+
+.submit_btn:hover {
+  background-color: dimgray;
+  color: white;
+}
+
+header{
+  display: flex;
+  justify-content: center;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+body{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.tile{
+  border: 2px solid #25B99A;
+  border-radius: 12px;
+  margin: 5px;
+  height: 100%;
+}
+
+.tile p{
+  margin: 3px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.tile p span{
+  color: #25B99A;
+}
+
+

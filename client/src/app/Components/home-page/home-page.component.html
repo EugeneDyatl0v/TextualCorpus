@@ -1,0 +1,24 @@
+<main>
+  <header>
+    <div>
+      <form (submit)="uploadFiles($event)">
+        <button class="upload_btn" (click)="fileInput.click()">
+          <span matTooltip="Press to upload file">Select files</span>
+          <input #fileInput type="file" multiple (change)="onFileSelected($event)" style="display:none;"/>
+        </button>
+        <button type="submit" class="submit_btn">Upload</button>
+      </form>
+    </div>
+  </header>
+  <body>
+    <article  *ngFor="let text of texts">
+      <article class="tile" [routerLink]="[text.id]">
+        <p><span>Title:</span> {{text.title}}</p>
+        <p><span>Category:</span> {{text.category}}</p>
+        <p><span>Author:</span> {{text.author}}</p>
+        <p><span>Content:</span></p>
+        <p>{{text.content}}</p>
+      </article>
+    </article>
+  </body>
+</main>

@@ -1,0 +1,12 @@
+<div class="main">
+  <h1>Syntactic parsing of text</h1>
+  <ng-container *ngFor="let svgItem of svg">
+    <ng-template [ngTemplateOutlet]="svgItemTemplate" [ngTemplateOutletContext]="{ $implicit: svgItem }"></ng-template>
+  </ng-container>
+
+  <ng-template #svgItemTemplate let-svgItem>
+    <div class="svg-container">
+      <div [innerHTML]="svgItem"></div>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,10 @@
+<main>
+  <body>
+    <div *ngFor="let word of this.normalForms">
+      <div class="tile" [routerLink]="[word.id]">
+        <p class="form">{{word["normal_form"]}}</p>
+        <p class="number">{{word["number"]}}</p>
+      </div>
+    </div>
+  </body>
+</main>

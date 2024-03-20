@@ -8,8 +8,8 @@ from server.Utils.util import get_text
 from server.dto.FormMapper import FormMapper
 from server.orph.Checker import Checker
 
-nlp = spacy.load(
-    'C:\\Users\\evgen\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\site-packages\\spacy\\data\\ru_core_news_md\\ru_core_news_md-3.7.0')
+nlp = spacy.load('ru_core_news_md')
+
 app = Flask(__name__)
 CORS(app)
 
@@ -33,9 +33,9 @@ def upload_files():
                 return 'One or more files have no name', 400
 
             filename = secure_filename(file.filename)
-            file.save('C:\\Learning\\EASIS\\TextualCorpus\\server\\texts\\' + filename)
+            file.save('texts\\' + filename)
 
-        texts = FilesReader.read_files('C:\\Learning\\EASIS\\TextualCorpus\\server\\texts')
+        texts = FilesReader.read_files('texts')
         print(texts)
         for id, text in enumerate(texts):
             xml_texts.append(FilesReader.generate_xml(text.content, 'xml\\' + str(id) + '.xml'))
@@ -128,7 +128,7 @@ def get_word(text_id, word_id):
             json = {'id': word.id, 'normal_form': word.normal_form, 'number': word.number, 'forms': []}
             for form in word.forms:
                 json["forms"].append(FormMapper.convert(form))
-            print(1)
+
 
     return jsonify(json)
 
@@ -136,15 +136,24 @@ def get_word(text_id, word_id):
 @app.route('/search', methods=['GET'])
 @cross_origin()
 def search():
-    #r = request.get_json()
-    #print(r)
-    json = search_all_words({'value': '', 'chars': []})
+    my_json = {}
+    r = request.args.get('value')
+    my_json['value'] = r
+    r = request.args.get('chars')
+    my_json['chars'] = list(filter(None, r.split(',')))
+    print(my_json)
+    json = search_all_words(my_json)
+    print(json)
     return jsonify(json)
 
 
 def check(word, query):
+
     if query['value'] in word.normal_form:
+        if query['chars'] is None:
+            return True
         forms = []
+        print(query['chars'])
         for form in word.forms:
             forms.append(FormMapper.convert(form))
         for form in forms:

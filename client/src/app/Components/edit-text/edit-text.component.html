@@ -1,0 +1,22 @@
+<main>
+  <header>
+    <div *ngFor="let text of texts">
+      <div class="preamble" *ngIf="text.id === id">
+        <p><span>Title: </span>{{text.title}}</p>
+        <p><span>Author: </span>{{text.author}}</p>
+        <p><span>Category: </span>{{text.category}}</p>
+      </div>
+    </div>
+    <button class="view_texts_btn" [routerLink]="['words']">Check all words forms</button>
+  </header>
+  <body>
+    <div *ngFor="let text of texts">
+      <div *ngIf="text.id === id">
+        <textarea [(ngModel)]="text.content">{{text.content}}</textarea>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <button mat-raised-button (click)="saveTextChanges()">Save changes</button>
+  </footer>
+</main>

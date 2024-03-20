@@ -1,0 +1,10 @@
+.example-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.example-section h4,
+.example-section p {
+  margin-left: 20px;
+}

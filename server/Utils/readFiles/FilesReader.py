@@ -15,8 +15,7 @@ class FilesReader:
     @staticmethod
     def generate_xml(text, output_file):
         # Загружаем модуль Spacy
-        nlp = spacy.load(
-            'C:\\Users\\evgen\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\site-packages\\spacy\\data\\ru_core_news_md\\ru_core_news_md-3.7.0')
+        nlp = spacy.load('ru_core_news_md')
 
         # Создаем корневой элемент
         root = ET.Element('t')
