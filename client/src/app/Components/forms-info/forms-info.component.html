@@ -2,6 +2,9 @@
   <body>
   <p><span>Word:</span> {{this.word?.normal_form}}</p>
   <p><span>Number:</span> {{this.word?.number}}</p>
+  <p><span>Definitions:</span> {{this.word?.definitions}}</p>
+  <p><span>Synonyms:</span> {{this.word?.synonyms}}</p>
+  <p><span>Antonyms:</span> {{this.word?.antonyms}}</p>
     <div style="margin: 20px" *ngFor="let form of this.word?.forms">
       <p *ngIf="form.word"><span>Form:</span> {{form.word}}</p>
       <p *ngIf="form.animation">Animation: {{form.animation}}</p>

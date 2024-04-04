@@ -13,6 +13,8 @@ export class FormsInfoComponent implements OnInit{
   word: Word | null = null
   text_id: string | null = ''
   form_id: string | null = ''
+  synonyms: string | undefined = ''
+  antonyms: string | undefined = ''
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute) {
