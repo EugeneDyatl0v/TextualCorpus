@@ -176,6 +176,7 @@ getSelectedCheckboxes() {
     }else {
      this.set.push(value);
     }
+    this.search();
   }
 }
 

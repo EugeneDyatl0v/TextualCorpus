@@ -55,3 +55,12 @@ footer{
   position: fixed;
   bottom: 0;
 }
+
+mat-icon{
+  position: absolute;
+  right: 2%;
+}
+
+mat-icon:hover{
+  background-color: rgba(185, 185, 189, 0.38);
+}

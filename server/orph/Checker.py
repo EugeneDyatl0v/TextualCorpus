@@ -1,4 +1,6 @@
 import pymorphy2
+import requests
+from ru_synonyms import AntonymsGraph, SynonymsGraph
 
 from server.model.Word import Word
 
@@ -46,3 +48,31 @@ class Checker:
         if item.tag.number != form.tag.number:
             return False
         return True
+
+    def get_word_definition(self, word):
+        word = word.title()
+        word = word.strip(":")
+        url = f"https://ru.wikipedia.org/api/rest_v1/page/summary/{word}"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            if "extract" in data:
+                return data["extract"]
+        return None
+
+    def get_synonyms_antonyms(self, word: str):
+        sg = SynonymsGraph()
+        ag = AntonymsGraph()
+
+        synonyms = []
+        antonyms = []
+
+        if sg.is_in_dictionary(word):
+            synonyms = list(sg.get_list(word))
+            synonyms = synonyms[:10]
+
+        if ag.is_in_dictionary(word):
+            antonyms = list(ag.get_list(word))
+            antonyms = antonyms[:10]
+
+        return synonyms, antonyms

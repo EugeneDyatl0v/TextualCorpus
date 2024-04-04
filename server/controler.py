@@ -124,11 +124,14 @@ def get_word(text_id, word_id):
     json = None
     for word in words:
         if word.id == int(word_id):
-            json = {'id': word.id, 'normal_form': word.normal_form, 'number': word.number, 'forms': []}
+            json = {'id': word.id, 'normal_form': word.normal_form, 'number': word.number, 'forms': [], "synonyms": [],
+                    "antonyms": [], "definitions": []}
             for form in word.forms:
                 json["forms"].append(FormMapper.convert(form))
-
-
+            checker = Checker()
+            json["synonyms"], json["antonyms"] = checker.get_synonyms_antonyms(word.normal_form)
+            json["definitions"] = checker.get_word_definition(word.normal_form)
+            print(json)
     return jsonify(json)
 
 
@@ -145,7 +148,6 @@ def search():
 
 
 def check(word, query):
-
     if query['value'] in word.normal_form:
         if query['chars'] is None:
             return True
