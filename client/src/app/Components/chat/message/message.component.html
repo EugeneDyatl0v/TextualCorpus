@@ -1,4 +1,10 @@
-<mat-card *ngIf="message.sender == 'AI'" style="position: absolute;justify-content: flex-end">
+<mat-card *ngIf="message.sender == 'AI'"
+          style="padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 5px;
+          clear: both;
+            background-color: #e6f3ff;
+            float: left;">
   <mat-card-header>
     <mat-card-title>
       {{message.sender}}
@@ -16,7 +22,13 @@
   </mat-card-footer>
 </mat-card>
 
-<mat-card *ngIf="message.sender == 'user'" style="position: absolute;justify-content: flex-start">
+<mat-card *ngIf="message.sender == 'user'"
+          style="padding: 10px;
+          margin-bottom: 10px;
+          border-radius: 5px;
+          clear: both;
+            background-color: #f0f0f0;
+            float: right;">
   <mat-card-header>
     <mat-card-title>
       {{message.sender}}

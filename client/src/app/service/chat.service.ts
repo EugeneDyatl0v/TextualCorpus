@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Message} from "../model/message";
 
 @Injectable({
@@ -17,14 +17,14 @@ export class ChatService {
   }
 
   public getChat(chat_name:string){
-    return this.http.get<Message[]>(`${this.url}/${chat_name}`);
+    return this.http.get<Message[]>(`${this.url}/${chat_name}`, options)
   }
 
   public addMessage(chat_name:string, message:string){
-    return this.http.get(`${this.url}/${chat_name}?message=${message}`);
+    return this.http.get(`${this.url}/${chat_name}?message=${message}`, )
   }
 
   public getChatNames(){
-    return this.http.get<string[]>(this.url);
+    return this.http.get<string[]>(this.url)
   }
 }
