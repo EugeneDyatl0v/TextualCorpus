@@ -1,5 +1,7 @@
 import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ChatService} from "../../service/chat.service";
+import {Message} from "../../model/message";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-chat',
@@ -8,26 +10,51 @@ import {ChatService} from "../../service/chat.service";
 })
 export class ChatComponent implements OnInit, OnDestroy{
 
-  constructor(
-    public chatService: ChatService,
-  ) {
-    this.chatService.connect();
-  }
+  chatNames: string[] = [];
+  messages: Message[] = [];
+  text: string = '';
+  isCreating: boolean = false;
+  chatName = '';
 
-  sendMessage() {
-    this.chatService.sendMessage("test");
-  }
+  constructor(
+    private chatService: ChatService
+  ) {}
 
   ngOnInit(): void {
-    this.chatService.getMessages().subscribe(data => {
-      console.log(data);
+    this.chatService.getChatNames().subscribe(data => {
+      this.chatNames = data;
     })
   }
 
-    ngOnDestroy() {
-      this.chatService.disconnect();
-    }
 
+  updateChat(chat: string) {
+    this.chatName = chat;
+    this.chatService.getChat(chat).subscribe(data => {
+      console.log(data)
+      this.messages = data;
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.chatNames = [];
+    this.messages = []
+  }
+
+  createChat() {
+    this.messages = [];
+    this.isCreating = true;
+  }
+
+  sendMessage() {
+    if (this.isCreating){
+      this.chatService.createChat(this.text);
+      this.chatName = this.text;
+      this.isCreating = false;
+    }
+    this.chatService.addMessage(this.chatName, this.text).subscribe(data =>
+      this.updateChat(this.chatName)
+    );
+  }
 }
 
 

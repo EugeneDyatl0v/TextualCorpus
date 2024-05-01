@@ -38,6 +38,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ChatComponent } from './Components/chat/chat.component';
 import {ChatService} from "./service/chat.service";
 import { NgxSsrTimeoutModule } from '@ngx-ssr/timeout';
+import { MessageComponent } from './Components/chat/message/message.component';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent, MatCardFooter,
+  MatCardHeader,
+  MatCardSubtitle,
+  MatCardTitle
+} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -49,10 +58,11 @@ import { NgxSsrTimeoutModule } from '@ngx-ssr/timeout';
     NormalFormsCountsComponent,
     FormsInfoComponent,
     SearchPageComponent,
-    ChatComponent
+    ChatComponent,
+    MessageComponent
   ],
   imports: [
-    NgxSsrTimeoutModule.forRoot({ timeout: 500 }),
+    NgxSsrTimeoutModule.forRoot({timeout: 500}),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -79,6 +89,13 @@ import { NgxSsrTimeoutModule } from '@ngx-ssr/timeout';
     ReactiveFormsModule,
     MatCheckbox,
     MatInput,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardSubtitle,
+    MatCardActions,
+    MatCardContent,
+    MatCardFooter,
   ],
   providers: [
     ChatService,

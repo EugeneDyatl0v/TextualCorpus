@@ -1,37 +1,30 @@
 import { Injectable } from '@angular/core';
-import {map, Observable} from "rxjs";
-import { io, Socket } from 'socket.io-client';
+import {HttpClient} from "@angular/common/http";
+import {Message} from "../model/message";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  public socket: any;
 
-  constructor() {
-
+  constructor(private http: HttpClient) {
   }
 
-  connect(){
-     this.socket = io('http://localhost:5000', {autoConnect: false});
-     this.socket.connect();
+  url = "http://localhost:5000/chat"
+
+  public createChat(chat_name:string){
+    this.http.post(`${this.url}?name=${chat_name}`, {});
   }
 
-  disconnect() {
-      if (this.socket) {
-          this.socket.disconnect();
-      }
+  public getChat(chat_name:string){
+    return this.http.get<Message[]>(`${this.url}/${chat_name}`);
   }
 
-  public sendMessage(message: string): void {
-    this.socket.emit('message', message);
+  public addMessage(chat_name:string, message:string){
+    return this.http.get(`${this.url}/${chat_name}?message=${message}`);
   }
 
-  public getMessages(): Observable<string> {
-    return new Observable<string>(observer => {
-      this.socket.on('message', (message: string) => {
-        observer.next(message);
-      });
-    });
+  public getChatNames(){
+    return this.http.get<string[]>(this.url);
   }
 }
