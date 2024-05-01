@@ -1,13 +1,9 @@
 version: '3'
-
 services:
-  postgres:
-    image: 'postgres:latest'
-    container_name: 'textual_corpus'
+  mongodb:
+    image: mongo
+    restart: always
     ports:
-      - 5432:5432
-    environment:
-      - 'POSTGRES_USER=eugene'
-      - 'POSTGRES_PASSWORD=01041971rtt'
-      - 'POSTGRES_HOST_AUTH_METHOD=trust'
-      - 'POSTGRES_DB=textual_corpus_db'
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
