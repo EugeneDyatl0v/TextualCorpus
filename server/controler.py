@@ -5,12 +5,21 @@ from Utils.readFiles.FilesReader import FilesReader
 import spacy
 from spacy import displacy
 from server.Utils.util import get_text
+from server.chat.ChatService import ChatService
 from server.dto.FormMapper import FormMapper
 from server.orph.Checker import Checker
+from flask_socketio import SocketIO, send, emit
+import logging
 
 nlp = spacy.load('ru_core_news_md')
 
 app = Flask(__name__)
+socketIo = SocketIO(app)
+socketIo.init_app(
+    app,
+    cors_allowed_origins="*",
+    async_mode='threading',
+)
 CORS(app)
 
 texts = []
@@ -169,3 +178,17 @@ def search_all_words(query):
             if check(word, query):
                 json.append({'id': word.id, 'normal_form': word.normal_form, 'number': word.number, 'text_id': text.id})
     return json
+
+
+@socketIo.on('connect')
+def on_connect():
+    print('Client connected')
+    socketIo.emit('message', {'data': 'Connected'})
+
+
+@socketIo.on('message')
+@cross_origin()
+def messaging(message, methods=['GET', 'POST']):
+    print('received message: ' + message)
+    cs = ChatService()
+    socketIo.emit('message', cs.get_user_message("message", "test"), room="test")

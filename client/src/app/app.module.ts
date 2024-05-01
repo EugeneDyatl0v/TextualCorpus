@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {importProvidersFrom, NgModule} from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './Components/home-page/home-page.component';
 import { EditTextComponent } from './Components/edit-text/edit-text.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, provideHttpClient, withFetch} from "@angular/common/http";
 import {
   MatCell,
   MatCellDef,
@@ -34,6 +34,10 @@ import {
 } from "@angular/material/autocomplete";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MatInput} from "@angular/material/input";
+import { TranslateModule } from '@ngx-translate/core';
+import { ChatComponent } from './Components/chat/chat.component';
+import {ChatService} from "./service/chat.service";
+import { NgxSsrTimeoutModule } from '@ngx-ssr/timeout';
 
 @NgModule({
   declarations: [
@@ -44,9 +48,11 @@ import {MatInput} from "@angular/material/input";
     DependencyOfTextComponent,
     NormalFormsCountsComponent,
     FormsInfoComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    ChatComponent
   ],
   imports: [
+    NgxSsrTimeoutModule.forRoot({ timeout: 500 }),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -72,11 +78,13 @@ import {MatInput} from "@angular/material/input";
     MatAutocompleteTrigger,
     ReactiveFormsModule,
     MatCheckbox,
-    MatInput
+    MatInput,
   ],
   providers: [
+    ChatService,
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

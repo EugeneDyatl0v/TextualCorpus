@@ -7,6 +7,7 @@ import {DependencyOfTextComponent} from "./Components/dependency-of-text/depende
 import {NormalFormsCountsComponent} from "./Components/normal-forms-counts/normal-forms-counts.component";
 import {FormsInfoComponent} from "./Components/forms-info/forms-info.component";
 import {SearchPageComponent} from "./Components/search-page/search-page.component";
+import {ChatComponent} from "./Components/chat/chat.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,11 @@ const routes: Routes = [
     path: 'search',
     component: SearchPageComponent,
     title:'Search'
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
+    title: 'Chat'
   }
 ];
 
