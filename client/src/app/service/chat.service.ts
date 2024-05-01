@@ -17,7 +17,7 @@ export class ChatService {
   }
 
   public getChat(chat_name:string){
-    return this.http.get<Message[]>(`${this.url}/${chat_name}`, options)
+    return this.http.get<Message[]>(`${this.url}/${chat_name}`)
   }
 
   public addMessage(chat_name:string, message:string){

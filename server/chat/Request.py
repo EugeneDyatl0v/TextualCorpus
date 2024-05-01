@@ -9,14 +9,14 @@ class Ai21Client:
     def generate_request(text):
         payload = {
             "numResults": 1,
-            "temperature": 0.7,
+            "temperature": 0.5,
             "messages": [
                 {
                     "text": text,
                     "role": "user"
                 }
             ],
-            "system": "ты филолог"
+            "system": "Ты эксперт по кинематографу. У тебя стаж 30 лет. Также ты работал филологом 50 лет."
 
         }
         headers = {

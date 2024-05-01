@@ -4,18 +4,22 @@ import json
 from server.chat.Request import Ai21Client
 from server.chat.db import DB
 from server.model.Message import Message
+from bson import json_util
 
 
 class ChatService:
 
     db = DB()
 
+    def get_chats(self):
+        return self.db.get_collection_names()
+
     def create_chat(self, collection_name):
         self.db.create_collection(collection_name)
 
     def get_chat(self, collection_name):
-        data = self.db.get_all_data(collection_name)
-        json_data = json.dumps(data, skipkeys=True, default=str)
+        data = list(self.db.get_all_data(collection_name))
+        json_data = json_util.dumps(data)
         return json_data
 
     def add_message(self, text, collection_name, sender):

@@ -14,11 +14,6 @@ import logging
 nlp = spacy.load('ru_core_news_md')
 
 app = Flask(__name__)
-socketIo = SocketIO(app)
-socketIo.init_app(
-    app,
-    cors_allowed_origins="*"
-)
 CORS(app)
 
 texts = []
@@ -179,15 +174,30 @@ def search_all_words(query):
     return json
 
 
-@socketIo.on('connect')
-def on_connect():
-    print('Client connected')
-    socketIo.emit('message', {'data': 'Connected'})
+cs = ChatService()
 
 
-@socketIo.on('message')
+@app.route("/chat/<string:chat_name>", methods=['GET', 'POST'])
 @cross_origin()
-def messaging(message, methods=['GET', 'POST']):
-    print('received message: ' + message)
-    cs = ChatService()
-    socketIo.emit('message', cs.get_user_message("message", "test"), room="test")
+def messaging(chat_name):
+    if request.args.get("message") is not None:
+        message = request.args.get("message")
+        print('received message: ' + message)
+        return jsonify(cs.get_user_message(message, chat_name).to_dict())
+    return cs.get_chat(chat_name)
+
+
+@app.route("/chat", methods=['POST'])
+@cross_origin()
+def create_chat():
+    chat_name = request.args.get("name")
+    cs.create_chat(chat_name)
+    return True
+
+
+@app.route("/chat", methods=['GET'])
+@cross_origin()
+def get_chats_name():
+    chats_name = cs.get_chats()
+    print(chats_name)
+    return chats_name

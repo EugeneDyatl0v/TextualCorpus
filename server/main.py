@@ -1,5 +1,5 @@
-from controler import app, socketIo
+from controler import app
 
 
 if __name__ == "__main__":
-    socketIo.run(app, allow_unsafe_werkzeug=True)
+    app.run()

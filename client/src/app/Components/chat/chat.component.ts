@@ -51,8 +51,10 @@ export class ChatComponent implements OnInit, OnDestroy{
       this.chatName = this.text;
       this.isCreating = false;
     }
-    this.chatService.addMessage(this.chatName, this.text).subscribe(data =>
-      this.updateChat(this.chatName)
+    this.chatService.addMessage(this.chatName, this.text).subscribe(data => {
+          window.location.reload();
+          this.updateChat(this.chatName);
+        }
     );
   }
 }
