@@ -1,0 +1,11 @@
+pymongo~=4.7.0
+requests~=2.31.0
+pymorphy2~=0.9.1
+chardet~=3.0.4
+docx2txt~=0.8
+pypdf2~=3.0.1
+spacy~=3.7.4
+striprtf~=0.0.26
+matplotlib~=3.8.2
+flask~=3.0.3
+werkzeug~=3.0.2

@@ -17,8 +17,7 @@ app = Flask(__name__)
 socketIo = SocketIO(app)
 socketIo.init_app(
     app,
-    cors_allowed_origins="*",
-    async_mode='threading',
+    cors_allowed_origins="*"
 )
 CORS(app)
 

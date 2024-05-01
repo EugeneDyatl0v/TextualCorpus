@@ -6,14 +6,15 @@ import { io, Socket } from 'socket.io-client';
   providedIn: 'root'
 })
 export class ChatService {
-  private socket: any;
+  public socket: any;
 
   constructor() {
 
   }
 
   connect(){
-     this.socket = io('http://localhost:5000')
+     this.socket = io('http://localhost:5000', {autoConnect: false});
+     this.socket.connect();
   }
 
   disconnect() {
