@@ -8,12 +8,38 @@
     	<mat-icon>send</mat-icon>
   </button>
   <br/>
+
+  <div *ngIf="isCreating" class="startPage">
+    <h2>Как вам помочь?</h2>
+    <p>Дай синонимы к слову ...</p>
+    <p>Сделай синтаксический разбор предложения ...</p>
+    <p>Расскажи о фильме ...</p>
+  </div>
+
 </div>
 
+<div class="line"></div>
+
+<div *ngIf="isHelp" class="dark">
+  <div class="window">
+    <button class="cls-btn" (click)="help_close()">x</button>
+    <br>
+    <h1>Я работаю с текстами предметной области "Кинематограф"</h1>
+    <h1>Мои способности:</h1>
+    <br>
+    <br>
+    <p>1.Дай синонимы к слову ...</p>
+    <p>2.Сделай синтаксический разбор предложения ...</p>
+    <p>3.Расскажи о фильме ...</p>
+  </div>
+</div>
 
 <div class="right-side">
   <p class="text">Chats</p>
-  <button class="new-chat-btn" (click)="createChat()">Create chat</button>
+  <button class="new-chat-btn" (click)="createChat()">New chat</button>
+  <button class="help-btn" (click)="help_open()">Help</button>
   <br/>
-  <button class="chat" *ngFor="let chat of chatNames" (click)="updateChat(chat)">{{ chat }}</button>
+  <div class="chats">
+    <button class="chat" *ngFor="let chat of chatNames" (click)="updateChat(chat)">{{ chat }}</button>
+  </div>
 </div>

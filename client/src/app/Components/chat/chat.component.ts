@@ -14,7 +14,8 @@ export class ChatComponent implements OnInit, OnDestroy{
   chatNames: string[] = [];
   messages: Message[] = [];
   text: string = '';
-  isCreating: boolean = false;
+  isCreating: boolean = true;
+  isHelp: boolean = false;
   chatName = '';
 
   constructor(
@@ -30,6 +31,10 @@ export class ChatComponent implements OnInit, OnDestroy{
 
   updateChat(chat: string) {
     this.chatName = chat;
+    this.chatService.getChatNames().subscribe(data => {
+      this.chatNames = data;
+    })
+    this.isCreating = false;
     this.chatService.getChat(chat).subscribe(data => {
       this.messages = data;
     })
@@ -45,6 +50,13 @@ export class ChatComponent implements OnInit, OnDestroy{
     this.isCreating = true;
   }
 
+  help_open(){
+    this.isHelp = true;
+  }
+
+  help_close(){
+    this.isHelp = false;
+  }
   sendMessage() {
     let temp = this.messages.length;
     if (this.isCreating) {
@@ -61,8 +73,9 @@ export class ChatComponent implements OnInit, OnDestroy{
       this.text = ''
       setTimeout(() => {
           this.updateChat(this.chatName)
-      }, 10000)
+      }, 20000)
    }
 }
+
 
 

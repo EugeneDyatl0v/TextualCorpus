@@ -59,11 +59,11 @@
   border: 2px solid #25B99A;
   color: #25B99A;
   background-color: white;
-  width: 26%;
+  width: 26.5%;
   height: 40px;
   position: absolute;
-  bottom: 5%;
-  right: 2%;
+  top: 13%;
+  right: 1.5%;
 }
 
 .new-chat-btn:hover{
@@ -74,8 +74,39 @@
   width: 26%;
   height: 40px;
   position: absolute;
+  top: 13%;
+  right: 2%;
+}
+
+.help-btn{
+  border-radius: 20px;
+  border: 2px solid #25B99A;
+  color: #25B99A;
+  background-color: white;
+  width: 26%;
+  height: 40px;
+  position: absolute;
   bottom: 5%;
   right: 2%;
+}
+
+.help-btn:hover{
+  border-radius: 20px;
+  border: 2px solid #25B99A;
+  color: white;
+  background-color: #25B99A;
+  width: 26%;
+  height: 40px;
+  position: absolute;
+  bottom: 5%;
+  right: 2%;
+}
+
+.chats{
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 
 .chat{
@@ -85,7 +116,7 @@
   background-color: white;
   width: 90%;
   margin-left: 6%;
-  margin-top: 3%;
+  margin-top: 5%;
   height: 40px;
 }
 
@@ -96,7 +127,7 @@
   background-color: #25B99A;
   width: 90%;
   margin-left: 6%;
-  margin-top: 3%;
+  margin-top: 5%;
   height: 40px;
 }
 
@@ -108,3 +139,100 @@
   right: 13%;
   margin-top: 0.7%;
 }
+
+.startPage{
+  width: 100%;
+  height: 80%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+
+.startPage h2{
+  color: #25B99A;
+  margin-left: 38%;
+  margin-top: 20%;
+}
+
+.startPage p{
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 50px;
+  margin-left: 15%;
+}
+
+.line{
+  background-color: #25B99A;
+  width: 2px;
+  height: 92.7%;
+  position: absolute;
+  right: 30%;
+}
+
+.dark{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window{
+  width: 60%;
+  height: 40%;
+  border: 2px solid #25B99A;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.window h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 60%;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-left: 20%;
+
+}
+
+
+.cls-btn{
+  position: absolute;
+  background-color: #f0f0f0;
+  right: 21%;
+  top: 31%;
+  border-radius: 10px;
+  border: 1px solid #25B99A;
+  color: #25B99A;
+}
+
+.cls-btn:hover{
+  position: absolute;
+  background-color: #25B99A;
+  right: 21%;
+  top: 31%;
+  border-radius: 10px;
+  border: 1px solid #25B99A;
+  color: #f0f0f0;
+}
+
+
