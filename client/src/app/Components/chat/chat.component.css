@@ -1,3 +1,110 @@
 .chat_name:hover{
   background-color: #25B99A;
 }
+
+.left-side {
+  float: left;
+  width: 66%;
+  height: 600px; /* Высота 100% отображаемой области */
+  overflow: auto; /* Включение скролла */
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.right-side {
+  float: right;
+  width: 30%;
+  height: 100%;
+}
+
+.chat-input{
+  border-radius: 20px;
+  border: 2px solid #25B99A;
+  width:55%;
+  height:4%;
+  position: absolute;
+  bottom: 5%;
+  left: 3%;
+  display: flex;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+.send-btn{
+  border-radius: 20px;
+  border: 2px solid #25B99A;
+  color: #25B99A;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 5%;
+  left: 60%;
+}
+
+.send-btn:hover{
+  border-radius: 20px;
+  border: 2px solid #25B99A;
+  color: white;
+  background-color: #25B99A;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: 5%;
+  left: 60%;
+}
+
+.new-chat-btn{
+  border-radius: 20px;
+  border: 2px solid #25B99A;
+  color: #25B99A;
+  background-color: white;
+  width: 26%;
+  height: 40px;
+  position: absolute;
+  bottom: 5%;
+  right: 2%;
+}
+
+.new-chat-btn:hover{
+  border-radius: 20px;
+  border: 2px solid #25B99A;
+  color: white;
+  background-color: #25B99A;
+  width: 26%;
+  height: 40px;
+  position: absolute;
+  bottom: 5%;
+  right: 2%;
+}
+
+.chat{
+  border-radius: 20px;
+  border: 2px solid #25B99A;
+  color: #25B99A;
+  background-color: white;
+  width: 90%;
+  margin-left: 6%;
+  margin-top: 3%;
+  height: 40px;
+}
+
+.chat:hover{
+  border-radius: 20px;
+  border: 2px solid #25B99A;
+  color: white;
+  background-color: #25B99A;
+  width: 90%;
+  margin-left: 6%;
+  margin-top: 3%;
+  height: 40px;
+}
+
+.text{
+  color: #25B99A;
+  font-size: 20px;
+  font-weight: bold;
+  position:absolute;
+  right: 13%;
+  margin-top: 0.7%;
+}

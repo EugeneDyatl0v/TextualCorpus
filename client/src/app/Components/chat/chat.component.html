@@ -1,14 +1,19 @@
-<div *ngFor="let message of messages">
-  <app-message [message]="message"></app-message>
-</div>
-<input type="text" [(ngModel)]="text"/>
-<br/>
-<button (click)="sendMessage()">Send Message</button>
-<br/>
-
-
-<div>
-  <button (click)="createChat()">Create chat</button>
+<div class="left-side">
+  <div *ngFor="let message of messages">
+    <app-message [message]="message"></app-message>
+  </div>
+  <input class="chat-input" type="text" [(ngModel)]="text"/>
   <br/>
-  <button *ngFor="let chat of chatNames" (click)="updateChat(chat)">{{ chat }}</button>
+  <button class="send-btn" (click)="sendMessage()">
+    	<mat-icon>send</mat-icon>
+  </button>
+  <br/>
+</div>
+
+
+<div class="right-side">
+  <p class="text">Chats</p>
+  <button class="new-chat-btn" (click)="createChat()">Create chat</button>
+  <br/>
+  <button class="chat" *ngFor="let chat of chatNames" (click)="updateChat(chat)">{{ chat }}</button>
 </div>
