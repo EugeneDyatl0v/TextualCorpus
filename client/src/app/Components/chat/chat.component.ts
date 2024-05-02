@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ChatService} from "../../service/chat.service";
 import {Message} from "../../model/message";
 import {HttpClient} from "@angular/common/http";
+import {timeout} from "rxjs/operators";
 
 @Component({
   selector: 'app-chat',
@@ -30,7 +31,6 @@ export class ChatComponent implements OnInit, OnDestroy{
   updateChat(chat: string) {
     this.chatName = chat;
     this.chatService.getChat(chat).subscribe(data => {
-      console.log(data)
       this.messages = data;
     })
   }
@@ -46,17 +46,23 @@ export class ChatComponent implements OnInit, OnDestroy{
   }
 
   sendMessage() {
-    if (this.isCreating){
+    let temp = this.messages.length;
+    if (this.isCreating) {
+
       this.chatService.createChat(this.text);
       this.chatName = this.text;
       this.isCreating = false;
     }
-    this.chatService.addMessage(this.chatName, this.text).subscribe(data => {
-          window.location.reload();
-          this.updateChat(this.chatName);
-        }
-    );
-  }
+    this.chatService.addMessage(this.chatName, this.text).subscribe(()=>{});
+      this.messages.push({
+        sender: "user",
+        text: this.text
+      })
+      this.text = ''
+      setTimeout(() => {
+          this.updateChat(this.chatName)
+      }, 10000)
+   }
 }
 
 
